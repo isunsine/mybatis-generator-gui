@@ -16,6 +16,7 @@ import java.net.URL;
 /**
  * 这是本软件的主入口,要运行本软件请直接运行本类就可以了,不用传入任何参数
  */
+@SuppressWarnings("restriction")
 public class MainUI extends Application {
 
 	private static final Logger _LOG = LoggerFactory.getLogger(MainUI.class);
