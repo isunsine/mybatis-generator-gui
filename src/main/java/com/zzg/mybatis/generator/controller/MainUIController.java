@@ -87,7 +87,8 @@ public class MainUIController extends BaseFXController {
 
     private List<ColumnOverride> columnOverrides;
 
-
+    @FXML
+    private ChoiceBox<String> encodingChoice;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -183,6 +184,8 @@ public class MainUIController extends BaseFXController {
             return cell;
         });
         loadLeftDBTree();
+        encodingChoice.setItems(FXCollections.observableArrayList("UTF-8","GBK"));
+        encodingChoice.setValue("UTF-8");
     }
 
     void loadLeftDBTree() {
@@ -303,6 +306,7 @@ public class MainUIController extends BaseFXController {
         generatorConfig.setNeedToStringHashcodeEquals(needToStringHashcodeEquals.isSelected());
         generatorConfig.setAnnotation(annotationCheckBox.isSelected());
         generatorConfig.setUseActualColumnNames(useActualColumnNamesCheckbox.isSelected());
+        generatorConfig.setEncoding(encodingChoice.getValue());
         return generatorConfig;
     }
 
@@ -315,6 +319,7 @@ public class MainUIController extends BaseFXController {
         daoTargetProject.setText(generatorConfig.getDaoTargetFolder());
         mapperTargetPackage.setText(generatorConfig.getMappingXMLPackage());
         mappingTargetProject.setText(generatorConfig.getMappingXMLTargetFolder());
+        encodingChoice.setValue(generatorConfig.getEncoding());
     }
 
     @FXML
